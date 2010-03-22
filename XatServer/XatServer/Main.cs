@@ -11,23 +11,37 @@ namespace XatServer
 		{
 			Console.WriteLine("Hola, sóc el servidor!");
 			
-			Server servidor = new Server("192.168.130.24", 6969);
+			Server servidor = new Server("192.168.130.216", 9898);
 			
 			if (!servidor.Start())
 			{
 				Console.WriteLine("No puc engegar el servidor!");
 			}
-			
-			if (servidor.WaitForAClient())
-			{
-				// Escribim tot el que ens envii el client
-				while (true)
-				{
-					Console.WriteLine("El client diu: " + servidor.ReadLine());
-				}
-				
-				// server.WriteLine("Hi!"); 
-			}
+
+            while (true)
+            {
+                if (servidor.WaitForAClient())
+                {
+                    // Escribim tot el que ens envii el client
+                    bool sortir = false;
+
+                    while (!sortir)
+                    {
+                        try
+                        {
+                            Console.WriteLine("El client diu: " + servidor.ReadLine());
+                        }
+                        catch (Exception ex)
+                        {
+                            sortir = true;
+                        }
+
+                    }
+
+                    Console.WriteLine("Client desconnectat. Tornant a escoltar...");
+                    // server.WriteLine("Hi!"); 
+                }
+            }
 		}
 	}
 	
