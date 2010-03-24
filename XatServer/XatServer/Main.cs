@@ -11,7 +11,7 @@ namespace XatServer
 		{
 			Console.WriteLine("Hola, sóc el servidor!");
 			
-			Server servidor = new Server("192.168.130.216", 9898);
+			Server servidor = new Server("192.168.130.42", 9898);
 			
 			if (!servidor.Start())
 			{
